@@ -11,7 +11,7 @@ import { SearchIcon } from 'lucide-react';
 import { useRouter } from "next/navigation";
 import { fetchCountries } from "@/api/countries";
 import { Card, CardContent } from "./ui/card";
-//import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuList, NavigationMenuTrigger } from "./ui/navigation-menu";
+
 
 
 const SearchInput = () => {
@@ -88,15 +88,20 @@ const SearchInput = () => {
             }
             {
                 !isLoading && searchQuery ? 
-                <Card className="w-[335px] h-[300px] sm:w-[435px] mt-1">
+                <Card className="w-[335px] max-h-[300px] sm:w-[435px] mt-1">
                     <CardContent className="py-2 overflow-y-auto max-h-[300px]">
                         <ul className="py-2">
-                            {suggestedCountries.map((country: any) => (
-                                <li className= "block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
+                            {suggestedCountries.map((country: any, index: number) => (
+                                <li key={index} className= "block cursor-pointer select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground">
                                     <div className="text-sm font-semibold leading-none">{country.name.common}</div>
-                                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                                        currency
-                                    </p>
+                                    <div className="flex">
+                                    {country.capital?.map((capital: any) => (
+                                        <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+                                            {capital}
+                                        </p>
+                                    ))}
+                                    </div>
+                                    
                                 </li>
                             ))}
                         </ul>
