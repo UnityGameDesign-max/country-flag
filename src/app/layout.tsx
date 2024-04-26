@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import SearchInput from "@/components/SearchInput";
+import NavBar from "@/components/NavBar";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      
+      <body className={inter.className}>
+        <NavBar />
+        <div className="flex flex-col items-center ">
+          <SearchInput />
+          {children}
+        </div>
+        <Toaster richColors position="bottom-right"/>
+      </body>
     </html>
   );
 }
