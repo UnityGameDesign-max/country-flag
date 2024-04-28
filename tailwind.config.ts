@@ -18,6 +18,9 @@ const config = {
       },
     },
     extend: {
+      screens: {
+        'hl':{ 'max': '899px' }
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

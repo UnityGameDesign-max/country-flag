@@ -46,7 +46,7 @@ const SearchInput = () => {
                                         <Input
                                             icon={<SearchIcon className="h-4 w-4"/>}
                                             placeholder="What country are looking for..."
-                                            className="w-70"
+                                            className="w-100 md:w-[500px]"
                                             {...field}
                                         />
                                         </FormControl>
