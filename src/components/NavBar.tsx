@@ -7,7 +7,7 @@ const NavBar = () => {
         <div className="max-auto w-full px-2.5 md:px-20">
           <div className="flex h-14 items-center gap-1 border-b border-zinc-200">
             <Flag className="h-4 w-4 text-primary"/>
-            <h1 className="text-lg font-semibold">Search</h1>
+            <h1 className="text-lg font-semibold">Fun with Flags</h1>
           </div>
         </div>
       </nav>
