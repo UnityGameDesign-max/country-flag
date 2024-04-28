@@ -22,7 +22,7 @@ const Page = () => {
     const encodedSearchQuery = encodeURI(searchQuery || "");
 
     const joinAllCapitals = (capitals: string[]) => {
-        return capitals.join(", ")
+        return capitals.join(", ");
     }
 
     useEffect(() => {
@@ -47,13 +47,38 @@ const Page = () => {
         fetchData();
     },[encodedSearchQuery]);
 
+
+    const handlePrevious = () => {
+        if (startIndex > 0) {
+            setStartIndex(startIndex - rowsPerPage);
+            setEndIndex(endIndex - rowsPerPage);
+        }
+    };
+
+    const handleNext = () => {
+        if (endIndex < countries.length) {
+            setStartIndex(startIndex + rowsPerPage);
+            setEndIndex(endIndex + rowsPerPage);
+        }
+    };
+
+    // useEffect(() => {
+    //     if (endIndex > countries.length) {
+    //         setEndIndex(countries.length);
+    //     }
+    // }, [countries.length, endIndex]);
+
+   
+
+    const currentPageCountries = countries.slice(startIndex, endIndex);
+
     return (
         <div className="py-10 flex justify-center flex-col items-center">
             
             {isLoading ? <Loader className='mt-2 text-center text-primary w-5 h-5 animate-spin' />: ''}
 
             <div className="mx-auto grid grid-cols-1 mt-10 sm:grid-cols-2 hl:grid-cols-1 gap-4 xl:grid-cols-2 px-5">
-                {countries.length > 0 && countries.map((country: any, area: number) => (
+                {currentPageCountries.length > 0 && currentPageCountries.map((country: any, area: number) => (
                     <Card key={area} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
                         <CardContent className="py-6 flex justify-between">
                             <div>
@@ -102,27 +127,20 @@ const Page = () => {
                                 className={
                                     cn('cursor-pointer', startIndex === 0 ? 'pointer-events-none opacity-50': undefined)
                                 }
-                                onClick={() => {
-                                    setStartIndex(startIndex - rowsPerPage);
-                                    setEndIndex(endIndex - rowsPerPage);
-                                }}
+                                onClick={handlePrevious}
                             />
                             </PaginationItem>
                             <PaginationItem>
                             <PaginationNext 
                                 className={
-                                    cn('cursor-pointer', endIndex === 100 ? 'pointer-events-none opacity-50': undefined)
+                                    cn('cursor-pointer', endIndex >= countries.length ? 'pointer-events-none opacity-50': undefined)
                                 }
-                                onClick={() => {
-                                    setStartIndex(startIndex + rowsPerPage)
-                                    setEndIndex(endIndex + rowsPerPage)
-                                }}
+                                onClick={handleNext}
                             />
                             </PaginationItem>
                         </PaginationContent>
                     </Pagination>
                 </div>
-          
         </div>
     )
 }
