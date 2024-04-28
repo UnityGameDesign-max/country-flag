@@ -65,7 +65,7 @@ const Page = () => {
                                         
                                         {item.symbol ? <div className="bg-green-500/10 p-2 rounded-lg">
                                             <p className="text-green-500 text-sm">{item.symbol}</p>
-                                        </div> : <p>unknown👎</p>}
+                                        </div> : <p className="text-sm">👎unknown</p>}
                                         
                                     </div>
                                 )) : <p className="text-muted-foreground text-sm">unknown 🤷‍♀️</p>}
