@@ -7,7 +7,7 @@ import { ERROR_MESSAGE, cn } from "@/lib/utils";
 import { Flag, Loader } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const Page = () => {
@@ -25,7 +25,16 @@ const Page = () => {
         return capitals.join(", ");
     }
 
+    const searchQueryRef = useRef(encodedSearchQuery);
+
     useEffect(() => {
+
+        if (searchQueryRef.current !== encodedSearchQuery) {
+            setStartIndex(0);
+            setEndIndex(rowsPerPage);
+            searchQueryRef.current = encodedSearchQuery;
+        }
+        
         async function fetchData() {
             setIsLoading(true);
             try {
@@ -62,11 +71,6 @@ const Page = () => {
         }
     };
 
-    // useEffect(() => {
-    //     if (endIndex > countries.length) {
-    //         setEndIndex(countries.length);
-    //     }
-    // }, [countries.length, endIndex]);
 
    
 
