@@ -7,7 +7,7 @@ import { ERROR_MESSAGE, cn } from "@/lib/utils";
 import { Flag, Loader } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
 const Page = () => {
@@ -80,37 +80,43 @@ const Page = () => {
             
             {isLoading ? <Loader className='mt-2 text-center text-primary w-5 h-5 animate-spin' />: ''}
 
+            
             <div className="mx-auto grid grid-cols-1 mt-10 sm:grid-cols-2 hl:grid-cols-1 gap-4 xl:grid-cols-2 px-5">
+
+            <Suspense>
                 {currentPageCountries.length > 0 && currentPageCountries.map((country: any) => (
-                    <Card key={country.cca2} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
-                        <CardContent className="py-6 flex justify-between">
-                            <div key={country.area}>
-                                <p className="font-semibold">{country.name.common}</p>
-                                
-                                {country.currencies && Object.values(country.currencies) ?  Object.values(country.currencies).map((item: any, index: number) => (
-                                    <div key={index} className="flex items-center gap-2">
-                                        <p className="text-sm">{item.name}</p>
-                                        
-                                        {item.symbol ? <div className="bg-green-500/10 p-2 rounded-lg">
-                                            <p className="text-green-500 text-sm">{item.symbol}</p>
-                                        </div> : <p className="text-sm">👎unknown</p>}
-                                        
-                                    </div>
-                                )) : <p className="text-muted-foreground text-sm">unknown 🤷‍♀️</p>}
-                                <p className="text-sm text-muted-foreground">{country.capital ? joinAllCapitals(country.capital) : <p>unknown ❌</p>}</p>
-                            </div>
-                        
-                            <Image 
-                                src={country.flags.png}
-                                alt="flag"
-                                width={100}
-                                height={100}
-                                quality={100}
-                                objectFit="contain"
-                            />
-                        </CardContent>
-                    </Card>
-                ))}
+                        <Card key={country.cca2} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
+                            <CardContent className="py-6 flex justify-between">
+                                <div key={country.area}>
+                                    <p className="font-semibold">{country.name.common}</p>
+                                    
+                                    {country.currencies && Object.values(country.currencies) ?  Object.values(country.currencies).map((item: any, index: number) => (
+                                        <div key={index} className="flex items-center gap-2">
+                                            <p className="text-sm">{item.name}</p>
+                                            
+                                            {item.symbol ? <div className="bg-green-500/10 p-2 rounded-lg">
+                                                <p className="text-green-500 text-sm">{item.symbol}</p>
+                                            </div> : <p className="text-sm">👎unknown</p>}
+                                            
+                                        </div>
+                                    )) : <p className="text-muted-foreground text-sm">unknown 🤷‍♀️</p>}
+                                    <p className="text-sm text-muted-foreground">{country.capital ? joinAllCapitals(country.capital) : <p>unknown ❌</p>}</p>
+                                </div>
+                            
+                                <Image 
+                                    src={country.flags.png}
+                                    alt="flag"
+                                    width={100}
+                                    height={100}
+                                    quality={100}
+                                    objectFit="contain"
+                                />
+                            </CardContent>
+                        </Card>
+                    ))}
+                
+            </Suspense>
+                
                 </div>
 
                 <div className="flex flex-col">

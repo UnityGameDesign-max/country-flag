@@ -7,9 +7,9 @@ export async function fetchCountries(encodedSearchQuery: string): Promise<any>{
         const response = await fetch(`${COUNTRY_FLAG_API_ENDPOINT}/${encodedSearchQuery}?fullText=true`);
         const data = await response.json();
         if(!response.ok){
-            throw new Error(ERROR_MESSAGE)
+            throw new Error(ERROR_MESSAGE);
         }
-        return data
+        return data;
     }catch(err: any){
         throw err;
     }
