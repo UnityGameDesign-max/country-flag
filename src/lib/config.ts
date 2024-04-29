@@ -1,0 +1,1 @@
+export const COUNTRY_FLAG_API_ENDPOINT = "https://restcountries.com/v3.1/name";
