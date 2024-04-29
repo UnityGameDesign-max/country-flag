@@ -83,7 +83,7 @@ const Page = () => {
             
             <div className="mx-auto grid grid-cols-1 mt-10 sm:grid-cols-2 hl:grid-cols-1 gap-4 xl:grid-cols-2 px-5">
 
-            <Suspense>
+            <Suspense fallback={<div>Loading...</div>}>
                 {currentPageCountries.length > 0 && currentPageCountries.map((country: any) => (
                         <Card key={country.cca2} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
                             <CardContent className="py-6 flex justify-between">
