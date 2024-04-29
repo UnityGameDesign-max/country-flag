@@ -118,7 +118,7 @@ const Page = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    {countries.length === 0 && 
+                    {countries.length === 0 && !isLoading &&
                         <div className="flex flex-col items-center">
                             <div className="bg-primary/10 p-2 rounded-lg">
                                 <Flag className="w-20 h-20 text-primary"/>
