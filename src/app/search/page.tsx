@@ -69,8 +69,6 @@ const Page = () => {
             setEndIndex(endIndex + rowsPerPage);
         }
     };
-
-
    
 
     const currentPageCountries = countries.slice(startIndex, endIndex);
