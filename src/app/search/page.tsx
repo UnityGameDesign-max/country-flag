@@ -3,8 +3,8 @@
 import { fetchCountries } from "@/api/countries";
 import { Card, CardContent } from "@/components/ui/card";
 import { Pagination, PaginationContent, PaginationItem, PaginationNext, PaginationPrevious } from "@/components/ui/pagination";
-import { ERROR_MESSAGE, cn } from "@/lib/utils";
-import { Flag, Loader } from "lucide-react";
+import { API_NOT_REACH, COUNTRY_NOT_REACH, cn } from "@/lib/utils";
+import { Flag, Loader, Unplug } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -18,12 +18,28 @@ const Page = () => {
     const [startIndex, setStartIndex] = useState<number>(0);
     const [endIndex, setEndIndex] = useState<number>(rowsPerPage);
     const search = useSearchParams();
+    const [apiFail, setAPIFail] = useState<string>('');
     const searchQuery = search ? search.get("q") : null;
     const encodedSearchQuery = encodeURI(searchQuery || "");
 
     const joinAllCapitals = (capitals: string[]) => {
         return capitals.join(", ");
     }
+
+
+    const handleError = (errMsg: string) => {
+        switch (errMsg) {
+            case API_NOT_REACH:
+                setAPIFail(API_NOT_REACH);
+            break;
+            case COUNTRY_NOT_REACH:
+                setCountries([]);
+                setAPIFail('');
+            break;
+            default:
+                toast.error(errMsg);
+        }
+    };
 
     const searchQueryRef = useRef(encodedSearchQuery);
 
@@ -42,11 +58,7 @@ const Page = () => {
                setCountries(countryRes);
             } catch (err: any) {
                const errMsg = err.message;
-               if(errMsg === ERROR_MESSAGE){
-                setCountries([]);
-               }if(errMsg){
-                toast.error(errMsg)
-               }
+               handleError(errMsg)
             }finally{
                 setIsLoading(false)
             }
@@ -118,15 +130,22 @@ const Page = () => {
                 </div>
 
                 <div className="flex flex-col">
-                    {countries.length === 0 && !isLoading &&
+                    {countries.length === 0 && !isLoading && 
                         <div className="flex flex-col items-center">
-                            <div className="bg-primary/10 p-2 rounded-lg">
-                                <Flag className="w-20 h-20 text-primary"/>
-                            </div>
-                            <p className="mt-4 md:text-2xl font-semibold">No countries found for {`'${searchQuery}'`}</p>
-                        
+                            {apiFail ? 
+                                <div className="bg-red-500/10 p-2 rounded-lg">
+                                    <Unplug className='w-20 h-20 text-red-500' />
+                                </div>
+                                :
+                                <div className="bg-primary/10 p-2 rounded-lg">
+                                    <Flag className="w-20 h-20 text-primary"/>
+                                </div>
+                            }
+                            {apiFail ? <p className="mt-4 md:text-2xl font-semibold">There is a technical issue. Please again later.</p> :  <p className="mt-4 md:text-2xl font-semibold">No countries found for {`'${searchQuery}'`}</p>}
+                           
                         </div>
                     }
+
 
                     <Pagination>
                         <PaginationContent>

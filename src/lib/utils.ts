@@ -5,4 +5,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-export const ERROR_MESSAGE = 'No country found'
+export const COUNTRY_NOT_REACH = 'No country found';
+export const API_NOT_REACH = 'Failed to fetch';
+
