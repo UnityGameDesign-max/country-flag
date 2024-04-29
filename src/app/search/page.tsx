@@ -40,7 +40,6 @@ const Page = () => {
             try {
                const countryRes = await fetchCountries(encodedSearchQuery);
                setCountries(countryRes);
-               console.log(countryRes);
             } catch (err: any) {
                const errMsg = err.message;
                if(errMsg === ERROR_MESSAGE){
@@ -82,14 +81,14 @@ const Page = () => {
             {isLoading ? <Loader className='mt-2 text-center text-primary w-5 h-5 animate-spin' />: ''}
 
             <div className="mx-auto grid grid-cols-1 mt-10 sm:grid-cols-2 hl:grid-cols-1 gap-4 xl:grid-cols-2 px-5">
-                {currentPageCountries.length > 0 && currentPageCountries.map((country: any, area: number) => (
-                    <Card key={area} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
+                {currentPageCountries.length > 0 && currentPageCountries.map((country: any) => (
+                    <Card key={country.cca2} className="w-[335px] bg-slate-50 sm:w-[435px] my-3">
                         <CardContent className="py-6 flex justify-between">
-                            <div>
+                            <div key={country.area}>
                                 <p className="font-semibold">{country.name.common}</p>
                                 
-                                {country.currencies && Object.values(country.currencies) ?  Object.values(country.currencies).map((item: any) => (
-                                    <div className="flex items-center gap-2">
+                                {country.currencies && Object.values(country.currencies) ?  Object.values(country.currencies).map((item: any, index: number) => (
+                                    <div key={index} className="flex items-center gap-2">
                                         <p className="text-sm">{item.name}</p>
                                         
                                         {item.symbol ? <div className="bg-green-500/10 p-2 rounded-lg">
@@ -107,6 +106,7 @@ const Page = () => {
                                 width={100}
                                 height={100}
                                 quality={100}
+                                objectFit="contain"
                             />
                         </CardContent>
                     </Card>
@@ -119,7 +119,7 @@ const Page = () => {
                             <div className="bg-primary/10 p-2 rounded-lg">
                                 <Flag className="w-20 h-20 text-primary"/>
                             </div>
-                            <p className="mt-4 md:text-2xl font-semibold">No countries found for '{searchQuery}'</p>
+                            <p className="mt-4 md:text-2xl font-semibold">No countries found for {`'${searchQuery}'`}</p>
                         
                         </div>
                     }

@@ -7,10 +7,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { SearchIcon } from 'lucide-react';
 import { useRouter } from "next/navigation";
-
 import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-
-
 
 const SearchInput = () => {
 
