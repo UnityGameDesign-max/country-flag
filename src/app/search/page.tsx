@@ -8,7 +8,6 @@ import { Flag, Loader, Unplug } from "lucide-react";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useRef, useState } from "react";
-import { toast } from "sonner";
 
 const Page = () => {
 
