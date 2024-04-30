@@ -139,7 +139,7 @@ const Page = () => {
                                     <Flag className="w-20 h-20 text-primary"/>
                                 </div>
                             }
-                            {apiFail ? <p className="mt-4 md:text-2xl font-semibold">There is a technical issue. Please again later.</p> :  <p className="mt-4 md:text-2xl font-semibold">No countries found for {`'${searchQuery}'`}</p>}
+                            {apiFail ? <p className="mt-4 md:text-2xl font-semibold">There is a technical issue. Please try again later.</p> :  <p className="mt-4 md:text-2xl font-semibold">No countries found for {`'${searchQuery}'`}</p>}
                            
                         </div>
                     }

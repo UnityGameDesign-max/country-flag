@@ -9,7 +9,7 @@
 ## How I Approached the problem
 
 ### Solution Approach
-* The solution was developed with a focus on scalability and maintainability. A structured file organization was adopted to facilitate continuous development and potential future enhancements. The UI was designed using a clean and intuitive component library, complemented by Tailwind CSS for styling. I used the `https://restcountries.com/v3.1/name/{name}` which returns all the countries have the name and show other results as suggestion.
+* The solution was crafted with a keen emphasis on scalability and maintainability. A structured file organization was embraced to streamline ongoing development efforts and accommodate potential future enhancements seamlessly. For the user interface, a clean and intuitive component library formed the backbone, augmented by Tailwind CSS for polished styling. Leveraging the RESTful API endpoint provided by https://restcountries.com/v3.1/name/{name}, the application fetches data efficiently, displaying all countries with a matching name while also presenting additional suggestions for further exploration
 
 ### Future Enhancements
 * Potential future enhancements include implementing a feature for country suggestions as users type in the search field and caching previously submitted inputs to improve user experience.
