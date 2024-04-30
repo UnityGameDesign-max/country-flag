@@ -9,7 +9,7 @@
 ## How I Approached the problem
 
 ### Solution Approach
-* The solution was developed with a focus on scalability and maintainability. A structured file organization was adopted to facilitate continuous development and potential future enhancements. The UI was designed using a clean and intuitive component library, complemented by Tailwind CSS for styling. I used the `https://restcountries.com/v3.1/name/{name}` which returns all the countries have the name.
+* The solution was developed with a focus on scalability and maintainability. A structured file organization was adopted to facilitate continuous development and potential future enhancements. The UI was designed using a clean and intuitive component library, complemented by Tailwind CSS for styling. I used the `https://restcountries.com/v3.1/name/{name}` which returns all the countries have the name and show other results as suggestion.
 
 ### Future Enhancements
 * Potential future enhancements include implementing a feature for country suggestions as users type in the search field and caching previously submitted inputs to improve user experience.

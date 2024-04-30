@@ -4,7 +4,7 @@ import { COUNTRY_NOT_REACH } from "@/lib/utils";
 export async function fetchCountries(encodedSearchQuery: string): Promise<any>{
 
     try{
-        const response = await fetch(`${COUNTRY_FLAG_API_ENDPOINT}/${encodedSearchQuery}?fullText=true`);
+        const response = await fetch(`${COUNTRY_FLAG_API_ENDPOINT}/${encodedSearchQuery}`);
         const data = await response.json();
         if(data.status){
             throw new Error(COUNTRY_NOT_REACH);

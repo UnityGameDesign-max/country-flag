@@ -36,8 +36,6 @@ const Page = () => {
                 setCountries([]);
                 setAPIFail('');
             break;
-            default:
-                toast.error(errMsg);
         }
     };
 
