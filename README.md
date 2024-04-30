@@ -20,4 +20,4 @@
 
 
 ### Feedback on Assessment
-* The assessment could be improved by specifying the recommended libraries for validation and form handling, as the use of any validation library was not mentioned and I decided to use react-hook-form and zod for validation.
+* The assessment could be improved by specifying the recommended libraries for validation and form handling, as the use of any validation library was not mentioned and I decided to use react-hook-form and zod for validation. 
