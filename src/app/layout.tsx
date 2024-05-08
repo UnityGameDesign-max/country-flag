@@ -4,6 +4,7 @@ import "./globals.css";
 import SearchInput from "@/components/SearchInput";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "sonner";
+import { Suspense } from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,7 +25,9 @@ export default function RootLayout({
         <NavBar />
         <div className="flex flex-col items-center ">
           <SearchInput />
-          {children}
+            <Suspense fallback={<div>Loading...</div>}>
+            {children}
+            </Suspense>
         </div>
         <Toaster richColors position="bottom-right"/>
         
