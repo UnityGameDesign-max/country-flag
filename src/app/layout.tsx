@@ -5,6 +5,7 @@ import SearchInput from "@/components/SearchInput";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "sonner";
 import { Suspense } from "react";
+import { Loader } from "lucide-react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,7 +26,11 @@ export default function RootLayout({
         <NavBar />
         <div className="flex flex-col items-center ">
           <SearchInput />
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={
+              <Loader 
+                className='mt-2 text-center text-primary w-5 h-5 animate-spin' 
+                />}
+              >
             {children}
             </Suspense>
         </div>

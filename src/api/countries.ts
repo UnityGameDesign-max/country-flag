@@ -12,7 +12,6 @@ export async function fetchCountries(encodedSearchQuery: string): Promise<any>{
         if(data._links){
             throw new Error(data.message)
         }
-        console.log(data)
         return data;
     }catch(err: any){
         throw err;
