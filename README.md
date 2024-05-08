@@ -1,10 +1,12 @@
 # This is a Country Flag API app
 
+# Demo link: https://country-flag-i32df36v0-unitygamedesignmaxs-projects.vercel.app/
 
 ## How to set up and run the project
 
 * run `npm install` to install necessary dependencies of the project
 * run `npm run dev` to run the project locally on your machine
+* run `npm run start` to run the project in production mode
 
 ## How I Approached the problem
 
